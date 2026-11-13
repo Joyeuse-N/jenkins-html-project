@@ -1,33 +1,588 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
- <title>My First CI/CD Project</title>
- <style>
- body {
- font-family: Arial, sans-serif;
- background-color: #f0f4f8;
- text-align: center;
- padding: 50px;
- }
- h1 {
- color: #2563eb;
- }
- p {
- font-size: 20px;
- }
- button {
- background-color: #2563eb;
- color: white;
- padding: 12px 25px;
- border: none;
- border-radius: 5px;
- }
- </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RP Tumba College | Welcome</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f4f5ff;
+            color: #10245b;
+            overflow-x: hidden;
+        }
+
+        /* NAVIGATION */
+
+        header {
+            position: absolute;
+            top: 20px;
+            left: 3%;
+            width: 94%;
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 17px 35px;
+            border-radius: 22px;
+            background: rgba(8, 36, 112, 0.94);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 10px 35px rgba(0, 30, 100, 0.2);
+        }
+
+        .logo {
+            color: white;
+            font-size: 23px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .logo i {
+            color: #ffc928;
+            margin-right: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 12px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 30px;
+            transition: 0.3s;
+            font-size: 14px;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background: #0759ed;
+        }
+
+        .motto {
+            color: #fff;
+            font-style: italic;
+            font-size: 14px;
+        }
+
+        /* HERO SECTION */
+
+        .hero {
+            min-height: 720px;
+            display: flex;
+            align-items: center;
+            padding: 150px 6% 100px;
+            position: relative;
+            background:
+                radial-gradient(circle at 85% 20%, #8bc8ff, transparent 35%),
+                linear-gradient(120deg, #ffffff, #dce9ff 60%, #c9d8ff);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border: 35px solid rgba(25, 92, 255, 0.1);
+            border-radius: 50%;
+            right: -150px;
+            top: 100px;
+        }
+
+        .hero-content {
+            width: 48%;
+            position: relative;
+            z-index: 2;
+            animation: slideIn 1s ease;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(38px, 5vw, 65px);
+            line-height: 1.15;
+            font-weight: 800;
+            color: #10276b;
+            margin-bottom: 20px;
+        }
+
+        .hero-content h1 span {
+            background: linear-gradient(90deg, #064de5, #7915c9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-content h2 {
+            font-size: 27px;
+            color: #172e70;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        .hero-content p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #34466e;
+            max-width: 480px;
+            margin-bottom: 30px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            text-decoration: none;
+            padding: 15px 25px;
+            border-radius: 35px;
+            font-weight: 600;
+            transition: 0.3s;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, #0754ee, #1938cc);
+            color: white;
+            box-shadow: 0 8px 20px rgba(0, 75, 255, 0.25);
+        }
+
+        .btn-secondary {
+            border: 2px solid #174de5;
+            color: #10276b;
+            background: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 60, 200, 0.25);
+        }
+
+        /* HERO IMAGE */
+
+        .hero-image {
+            width: 52%;
+            height: 430px;
+            position: relative;
+            z-index: 2;
+            margin-left: 20px;
+            animation: fadeIn 1.5s ease;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 45% 15% 20% 15%;
+            border: 8px solid rgba(255,255,255,0.8);
+            box-shadow: 0 20px 45px rgba(0, 30, 100, 0.2);
+        }
+
+        /* FEATURES */
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 22px;
+            padding: 20px 5% 70px;
+            background: #f4f5ff;
+            position: relative;
+        }
+
+        .feature-card {
+            background: rgba(255,255,255,0.9);
+            padding: 25px 20px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 8px 25px rgba(30, 60, 150, 0.1);
+            border-bottom: 5px solid #0860f5;
+            transition: 0.4s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(30, 60, 150, 0.2);
+        }
+
+        .feature-card:nth-child(2) {
+            border-color: #9415e8;
+        }
+
+        .feature-card:nth-child(3) {
+            border-color: #36bd17;
+        }
+
+        .feature-card:nth-child(4) {
+            border-color: #ff9e00;
+        }
+
+        .feature-icon {
+            width: 65px;
+            height: 65px;
+            min-width: 65px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 25px;
+            background: linear-gradient(135deg, #09a5ff, #0750e8);
+        }
+
+        .feature-card:nth-child(2) .feature-icon {
+            background: linear-gradient(135deg, #c34cff, #7900dc);
+        }
+
+        .feature-card:nth-child(3) .feature-icon {
+            background: linear-gradient(135deg, #70df16, #159e27);
+        }
+
+        .feature-card:nth-child(4) .feature-icon {
+            background: linear-gradient(135deg, #ffca26, #ff8500);
+        }
+
+        .feature-card h3 {
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: #10276b;
+        }
+
+        .feature-card p {
+            font-size: 12px;
+            color: #536080;
+        }
+
+        /* ABOUT SECTION */
+
+        .about {
+            padding: 80px 8%;
+            text-align: center;
+            background: white;
+        }
+
+        .about h2 {
+            font-size: 35px;
+            margin-bottom: 20px;
+            color: #10276b;
+        }
+
+        .about h2 span {
+            color: #7134db;
+        }
+
+        .about p {
+            max-width: 750px;
+            margin: auto;
+            line-height: 1.9;
+            color: #5a6682;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: linear-gradient(100deg, #061c61, #102e87);
+            color: white;
+            padding: 30px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .socials {
+            display: flex;
+            gap: 20px;
+        }
+
+        .socials a {
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: white;
+            color: #10276b;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .socials a:hover {
+            background: #ffc928;
+            transform: translateY(-5px);
+        }
+
+        /* ANIMATIONS */
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* MOBILE RESPONSIVENESS */
+
+        @media (max-width: 1000px) {
+            .features {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .motto {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                top: 10px;
+                left: 3%;
+                width: 94%;
+            }
+
+            nav {
+                padding: 15px;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 5px;
+            }
+
+            .nav-links a {
+                padding: 8px 10px;
+                font-size: 12px;
+            }
+
+            .hero {
+                flex-direction: column;
+                padding: 190px 7% 60px;
+                text-align: center;
+            }
+
+            .hero-content,
+            .hero-image {
+                width: 100%;
+                margin: 0;
+            }
+
+            .hero-content h1 {
+                font-size: 40px;
+            }
+
+            .hero-content h2 {
+                font-size: 22px;
+            }
+
+            .hero-content p {
+                margin: 0 auto 25px;
+            }
+
+            .buttons {
+                justify-content: center;
+            }
+
+            .hero-image {
+                height: 280px;
+                margin-top: 40px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+                padding: 30px 7%;
+            }
+
+            footer {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
 </head>
+
 <body>
- <h1>Welcome to Our New Website!</h1>
- <p>This is my first CI/CD project using Jenkins.</p>
- <p>Developed using HTML and CSS.</p>
- <button>Learn More</button>
+
+    <!-- NAVIGATION -->
+    <header>
+        <nav>
+            <a href="#" class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                RP Tumba College
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="#" class="active"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#about"><i class="fas fa-info-circle"></i> About</a></li>
+                <li><a href="#features"><i class="fas fa-th-large"></i> Services</a></li>
+                <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+
+            <div class="motto">
+                Learn • Innovate • Excel
+            </div>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <h1>
+                Welcome to
+                <span>RP Tumba College</span>
+            </h1>
+
+            <h2>Your Future, Our Priority</h2>
+
+            <p>
+                A modern learning environment for quality
+                education, creativity, technology and innovation
+                in Rwanda. Discover opportunities and build
+                the skills for your future.
+            </p>
+
+            <div class="buttons">
+                <a href="#about" class="btn btn-primary">
+                    <i class="fas fa-graduation-cap"></i>
+                    Explore Our College
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+
+                <a href="#contact" class="btn btn-secondary">
+                    <i class="fas fa-envelope"></i>
+                    Contact Us
+                </a>
+            </div>
+
+        </div>
+
+        <div class="hero-image">
+            <img
+                src="https://images.unsplash.com/photo-1562774053-701939374585?w=1200"
+                alt="Modern college building">
+        </div>
+
+    </section>
+
+    <!-- FEATURES -->
+    <section class="features" id="features">
+
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-book-open"></i>
+            </div>
+            <div>
+                <h3>Quality Education</h3>
+                <p>Learn with the best</p>
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-lightbulb"></i>
+            </div>
+            <div>
+                <h3>Innovation</h3>
+                <p>Build new ideas</p>
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-users"></i>
+            </div>
+            <div>
+                <h3>Skilled Community</h3>
+                <p>Grow together</p>
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-trophy"></i>
+            </div>
+            <div>
+                <h3>Brighter Future</h3>
+                <p>Achieve more</p>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about" id="about">
+
+        <h2>Discover <span>Our College</span></h2>
+
+        <p>
+            RP Tumba College is a place where students can
+            develop knowledge, practical skills and innovative
+            ideas. We believe in preparing learners for
+            professional success and contributing to the
+            development of Rwanda.
+        </p>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="contact">
+
+        <p>
+            © 2026 RP Tumba College. All rights reserved.
+        </p>
+
+        <div class="socials">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-x-twitter"></i></a>
+        </div>
+
+        <p>
+            Together for a Knowledge-Based Rwanda 🇷🇼
+        </p>
+
+    </footer>
+
 </body>
 </html>
